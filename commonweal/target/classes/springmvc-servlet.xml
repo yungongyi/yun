@@ -10,7 +10,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!--扫描包 -->
-	<context:component-scan base-package="cn.tuyuan.commonweal.Controller" />
+	<context:component-scan base-package="cn.tuyuan.commonweal.controller" />
 	<!--启动注释扫描 -->
 	<mvc:annotation-driven />
 	<bean
