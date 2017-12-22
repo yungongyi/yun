@@ -1,0 +1,144 @@
+body {
+    background: #ffffff;
+}
+#halloption span,li,option{
+    color: white;
+}
+
+
+@media all and (min-width:320px) {
+    #halloption,
+    #noticehall {
+        padding-top: 30px;
+    }
+    /*全部ul*/
+    #NoticeHall	.area,.persontype {
+        padding: 0px;
+    }
+    /*关键字*/
+    #NoticeHall .keyword {
+        margin-top: -5px;
+    }
+    /*每个选项的右外边距*/
+    #NoticeHall .areas,
+    .persontypes {
+        display: inline-block;
+        list-style: none;
+        margin-right: 30px;
+        padding: 2px 10px;
+    }
+    /*类型的样式*/
+    /*选中的样式*/
+    #NoticeHall .actives {
+        background: lightslategray;
+        border-radius: 5px;
+        color: white;
+    }
+    /*悬浮在每个条件选项上时或搜索按钮上，指针变为手指*/
+    #NoticeHall .areas:hover,
+    .persontypes:hover,
+    .search:hover {
+        cursor: pointer;
+    }
+    /*悬浮在关键词搜索按钮上时*/
+    #NoticeHall .input-group-addon:hover {
+        background-color: lightslategray;
+        color: white;
+    }
+    /*当屏幕为最大下拉框控件消失*/
+    #NoticeHall .phonearea,
+    .phonepersontype {
+        display: none;
+    }
+    /*丢失标题*/
+    #NoticeHall .droptitle {
+        color: lightslategrey;
+        line-height: 30px;
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width:319px) {
+    .container{padding: 0px}
+    #NoticeHall .area,
+    .persontype {
+        display: none;
+    }
+    #halloption {
+        padding-top: 20px;
+    }
+    #NoticeHall .phonearea,
+    .phonepersontype {
+        padding: 2px 5px;
+        border-radius: 5px;
+    }
+}
+
+#NoticeHall #findgood,
+#findperson,#findpast {
+    color: black;
+    margin: 0px;
+    font-size: 20px;
+}
+
+#NoticeHall #findgood:hover,
+#findperson:hover,#findpast:hover {
+    color: lightslategray;
+    background: transparent;
+    border: 0px;
+}
+
+#NoticeHall .active #findgood {
+    color: #000000;
+    font-weight: bold;
+    background: transparent;
+    border: 0px;
+}
+
+#NoticeHall .active #findperson {
+    color: #000000;
+    font-weight: bold;
+    background: transparent;
+    border: 0px;
+}
+#NoticeHall .active #findgood {
+    color: #000000;
+    font-weight: bold;
+    background: transparent;
+    border: 0px;
+}
+
+#NoticeHall .active #findpast {
+    color: #000000;
+    font-weight: bold;
+    background: transparent;
+    border: 0px;
+}
+
+#NoticeHall .caption {
+    position: relative;
+    margin-top: -110px;
+    display: none;
+}
+#NoticeHall .caption p{
+    color:#122B40;
+    padding: 0px;
+}
+#NoticeHall .thumbnail:hover {
+    cursor: pointer;
+}
+#NoticeHall .thumbnail:hover img{
+    filter:alpha(Opacity=10);-moz-opacity:0.5;opacity: 0.5;
+}
+#firstdiv{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#seconddiv{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#thirddiv{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

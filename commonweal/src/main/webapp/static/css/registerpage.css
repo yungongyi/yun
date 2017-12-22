@@ -1,0 +1,75 @@
+body {
+				background: #ddf0ed;
+			}
+			 
+			@media all and (min-width:1200px) {
+				/*标题*/
+				#RegisterPage #title {
+					padding: 60px 0px;
+				}
+				/*最外边框的上外边距*/
+				#RegisterPage .logincontainer {
+					background-color: rgba(0, 0, 0, 0.3);
+					border-radius: 5px;
+					margin-top: 30px;
+				}
+			}
+			
+			@media all and (min-width:768px) {
+				/*标题*/
+				#RegisterPage #title {
+					padding: 40px 0px;
+				}
+				/*最外边框的上外边距*/
+				#RegisterPage .logincontainer {
+					margin-top: 10px;
+				}
+			}
+			
+			@media all and (max-width:767px) {
+				/*标题*/
+			#RegisterPage 	#title {
+					padding: 40px 0px;
+				}
+				/*最外边框的上外边距*/
+				#RegisterPage .logincontainer {
+					margin-top: 5px;
+				}
+			}
+			
+			#RegisterPage .warning {
+				color: brown;
+				float: left;
+			}
+			/*验证码*/
+			
+			#RegisterPage .getyanzhengma,
+			.fasongzhong,
+			.daojishi {
+				color: brown;
+				float: left;
+				padding-top: 15px;
+			}
+			
+			#RegisterPage .getyanzhengma:hover {
+				text-decoration: none;
+				color: crimson;
+				cursor: pointer;
+			}
+			/*注册按钮*/
+			
+			#RegisterPage .gologin {
+				float: right;
+			}
+			
+			#RegisterPage .gologin:hover {
+				color: chocolate;
+				cursor: pointer;
+			}
+			
+			#RegisterPage .isyanzhengma,
+			.ispassword,
+			.isphone,
+			.isnickname {
+				display: none;
+			}

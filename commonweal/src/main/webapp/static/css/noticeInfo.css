@@ -1,0 +1,95 @@
+body{
+    font-family: "΢���ź�";
+    font-size: 62.5%;
+}
+header div a img{
+    padding: 0px;
+}
+#noticeinfopage #firstdiv p{
+    font-size: 2rem;
+    color: black;
+    padding-top: 1rem;
+}
+#noticeinfopage #firstdiv p a{
+    color: black;
+}
+#noticeinfopage #firstdiv{
+    margin-bottom: 2rem;
+}
+/*marquee{
+    color: #E63E99;
+    font-size: 2rem;
+}*/
+#noticeinfopage #seconddiv h4{
+    color: #000000;
+}
+#noticeinfopage #seconddiv p{
+    font-size: 1.5rem;
+    color: #000000;
+    padding-top: 1.6rem;
+}
+#noticeinfopage #seconddiv{
+    padding-left: 2rem;
+    padding-right: 0rem;
+}
+#noticeinfopage #seconddiv a{
+    margin-top: 1rem;
+    color: #0B0BFF;
+    padding-right: 2rem;
+    font-family: "΢���ź�";
+
+}
+#noticeinfopage .nav>li>a{
+    font-size: 1.6rem;
+}
+
+
+#noticeinfopage #thirddiv{
+    margin-top: 2rem;
+
+}
+#noticeinfopage #fourdiv p{
+    font-size: 1.5rem;
+    color: black;
+    padding-top: 1rem;
+}
+#noticeinfopage #fivediv{
+    background-color: #EBEBEB;
+    width: 38rem;
+    height: 8rem;
+}
+#noticeinfopage #fivediv a img{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+#noticeinfopage #fivediv h4 {
+    color: #000000;
+    padding-top: 1rem;
+}
+#noticeinfopage #fivediv p {
+    color: #000000;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+}
+#noticeinfopage #fivediv{
+    height: 10rem;
+}
+@media all and (max-width: 767px){
+   #noticeinfopage  #firsta img{
+        display: none;
+    }
+@media all and (max-width: 350px) {
+   #noticeinfopage  .media-left{
+    display: none;
+        padding: 0rem;
+        margin:0rem;
+    }
+#noticeinfopage .media-body{
+    width: 15rem;
+    padding-left:0.8rem;
+}
+#noticeinfopage #fivediv{
+    width: 30.1rem;
+}
+}
+}

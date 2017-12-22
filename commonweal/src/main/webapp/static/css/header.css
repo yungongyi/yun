@@ -1,0 +1,27 @@
+*{font-family: "΢���ź�";}
+body{scroll:no}
+#header .glyphicon{color: white;font-weight:bold;font-size:19px;}
+#header>.collapse>.nav>li{padding-right: 1em}
+#header>.collapse>.nav>li>a>.glyphicon{padding-right: 0.5em;}
+#header>.navbar-header>img{padding: 0em}
+@media all and (min-width: 1250px) {
+    #header{padding:0 5rem;margin-bottom: 0;}
+}
+@media all and (max-width: 375px) {
+    #header{margin-bottom: 0;}
+    #header>.navbar-header>img{padding: 0em;width: 7em}
+    #header>.navbar-header>a{font-size:1.1em; padding:1.25em 0.1em 0.1em 0.2em}
+}
+#header .my-navbar {padding:8px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;background-color: black;}
+#header .my-navbar a{background:transparent !important;color:white}
+#header .my-navbar a:hover{color:white;font-weight: bold !important;background:transparent;outline:0}
+#header .my-navbar a:hover>.glyphicon{color: white;}
+#header .my-navbar a {transition: color 0.5s ease-in-out;}
+#header .top-nav {padding:0;background:black;}
+#header .top-nav a{color: white !important;}
+#header_hide>li>input{margin-top:0.9em;margin-left:1em;height: 2.2em ;border-radius: 8px}
+#header_hide>li>.btn{border: 1px silver solid;border-radius: 8px}
+#header_hide>li>a{color: white}
+#header_hide>li>a:focus{color: white;background-color: brown}
+#header_hide>li>a:hover{background-color: #741000}
+#header>.navbar-header>.navbar-brand:hover{background-color:#741000 }
