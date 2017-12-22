@@ -1,14 +1,15 @@
-package cn.tuyuan.commonweal.ServiceImpl;
+package cn.tuyuan.commonweal.serviceimpl;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.tuyuan.commonweal.Dao.PersonDao;
-import cn.tuyuan.commonweal.Service.PersonService;
+import cn.tuyuan.commonweal.dao.PersonDao;
 import cn.tuyuan.commonweal.pojo.Person;
+import cn.tuyuan.commonweal.service.PersonService;
 /**
  * 
  * @author 陈嘉伟
@@ -17,7 +18,7 @@ import cn.tuyuan.commonweal.pojo.Person;
 @Service("personService")
 public class PersonServiceImpl implements PersonService {
 
-	@Resource
+	@Autowired
 	private PersonDao personDao;
 	
 	@Override

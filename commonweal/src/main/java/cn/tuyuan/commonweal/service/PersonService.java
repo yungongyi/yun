@@ -1,17 +1,14 @@
-package cn.tuyuan.commonweal.Dao;
+package cn.tuyuan.commonweal.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import cn.tuyuan.commonweal.pojo.Person;
 
-/**
- * 
- * @author 陈嘉伟
- * @version 1.0
- */
-public interface PersonDao {
-
-	
+@Transactional
+public interface PersonService {
 	/**
 	 * @describe 查询所有用户
 	 * @return all person
@@ -23,5 +20,6 @@ public interface PersonDao {
 	 * @param person
 	 * @return Person
 	 */
+	
 	Person getPerson(Person person);
 }

@@ -11,19 +11,22 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd ">
 
-	
-	<!--1.配置数据源 -->
-	<!-- <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
-		<property name="username" value="scott" />
-		<property name="password" value="bdqn" />
-	</bean> -->
 
-	<!--2.定义sessionFactory -->
+	<!--1.配置数据源 -->
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+<!-- 	 <property name="dialect" value="org.hibernate.dialect.MySQLDialect"></property> -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/commonweal" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean> 
+
+
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+   		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!--3.1.通过hibernate配置文件配置数据源及参数 -->
+		<property name="dataSource"  ref="dataSource"    />
+		<!--3.2配置对象关系映射文件 -->
 		<!-- 2.3加入由注解定义的实体类 -->
 		<property name="packagesToScan" value="cn.tuyuan.commonweal.pojo" />
 	</bean>
@@ -32,9 +35,8 @@
 	<context:component-scan base-package="cn.tuyuan.commonweal"></context:component-scan>
 
 	<!--4.声明事务管理器 -->
-	<tx:annotation-driven transaction-manager="txManager"/>
 	<bean id="txManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 </beans>

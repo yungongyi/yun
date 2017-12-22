@@ -2,12 +2,15 @@ package cn.tuyuan.commonweal.test;
 
 import java.util.List;
 
+
+
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.tuyuan.commonweal.Service.PersonService;
 import cn.tuyuan.commonweal.pojo.Person;
+import cn.tuyuan.commonweal.service.PersonService;
 
 public class testUserDao {
 
@@ -32,6 +35,7 @@ public class testUserDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			e.getMessage();
 		}
 		
 	}
