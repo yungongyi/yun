@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/cn/tuyuan/commonweal/util/sendphone/StringUtil.java=GBK
 encoding//src/main/resources/c3p0.properties=UTF-8
 encoding//src/main/resources/mysql.properties=UTF-8
 encoding//src/test/java=UTF-8

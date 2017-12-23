@@ -4,24 +4,18 @@ import java.util.List;
 
 import cn.tuyuan.commonweal.pojo.Person;
 
+ 
+
 /**
- * 
- * @author 陈嘉伟
- * @version 1.0
+ * @author 孙家伟
+ * 2017年12月23日
+ *
  */
 public interface PersonDao {
-
-	
-	/**
-	 * @describe 查询所有用户
-	 * @return all person
+	   
+	  /**
+	 * @param  手机号
+	 * @return  一个用户对象
 	 */
-	List<Person> getAllPerson();
-	
-	/**
-	 * 查询单个用户
-	 * @param person
-	 * @return Person
-	 */
-	Person getPerson(Person person);
+	public Person  getPerson(String iphone);
 }

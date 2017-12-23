@@ -113,7 +113,7 @@ $(function() {
 			flag = false;
 		}else if(checkpasswordnull()==false){
 			flag = false;
-		}else if(checkyanzhengmanull==false){
+		}else if(checkyanzhengmanull()==false){
 			flag = false;
 		} else{
 			flag = true;

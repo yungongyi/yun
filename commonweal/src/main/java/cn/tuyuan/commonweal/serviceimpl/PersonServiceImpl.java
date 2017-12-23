@@ -12,7 +12,7 @@ import cn.tuyuan.commonweal.pojo.Person;
 import cn.tuyuan.commonweal.service.PersonService;
 /**
  * 
- * @author 陈嘉伟
+ * @author 孙家伟
  * @version 1.0
  */
 @Service("personService")
@@ -20,15 +20,32 @@ public class PersonServiceImpl implements PersonService {
 
 	@Autowired
 	private PersonDao personDao;
-	
-	@Override
-	public List<Person> getAllPerson() {
-		return personDao.getAllPerson();
+
+	//登录
+	public Person getPerson(String iphone, String password) {
+		//根据数据好查询用户
+		Person person = personDao.getPerson(iphone);
+		//如果查询到该用户
+		if(person!=null){
+			//验证该用户的密码是否正确
+			if(person.getPassword().equals(password)){
+				//如果正确则返回该用户对象
+				return  person;
+			}
+		}
+		//否则返回false
+		return null;
 	}
 
-	@Override
-	public Person getPerson(Person person) {
-		return personDao.getPerson(person);
+
+	//快速登录
+	public Person fastLogin(String iphone) {
+		//根据数据好查询用户
+		Person person = personDao.getPerson(iphone);
+		return person;
 	}
+
+
+
 
 }
