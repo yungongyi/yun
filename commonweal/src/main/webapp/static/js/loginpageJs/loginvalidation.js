@@ -77,11 +77,7 @@ $(function() {
 			fisyanzhengma.show(500);
 			fisyanzhengma.html('验证码不能为空');
 			return false;
-		} else if(fyanzhengma.val() != 1234) {
-			fisyanzhengma.show(500);
-			fisyanzhengma.html('验证码不正确');
-			return false;
-		} else {
+		}  else {
 			fisyanzhengma.hide(500);
 			return true;
 		}
