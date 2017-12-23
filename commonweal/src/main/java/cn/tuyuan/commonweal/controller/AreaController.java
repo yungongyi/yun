@@ -22,7 +22,7 @@ import cn.tuyuan.commonweal.service.ProvinceService;
  * @author 高俊东
  * 地域管理
  */
-@RestController
+@Controller
 @RequestMapping("/Province")
 public class AreaController {
 	
