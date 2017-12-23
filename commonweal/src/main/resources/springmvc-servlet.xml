@@ -19,4 +19,6 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 
+	<!-- 静态资源文件引入 -->
+	<mvc:resources location="/statics/" mapping="/statics/**"></mvc:resources>
 </beans>   

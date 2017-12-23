@@ -1,0 +1,63 @@
+@media all and (max-width: 362px){
+   #personcenterpage #per_head>div>.media>.media-body>p>span{position: absolute;bottom: 0.6em;left:0.1em;width:10em}
+}
+@media all and (max-width: 767px) {
+   #personcenterpage .container{margin-top: 0.5em;margin-bottom:0.5em;border-radius: 8px}
+   #personcenterpage #per_up{margin-top:0em;padding: 0.5em 0.5em}
+   #personcenterpage #per_up>div{padding: 1px}
+  #personcenterpage  #per_up>.tab-content{border: 1px solid silver;margin-top: 0.5em;}
+   #personcenterpage #per_up>div>ul{display: flex;justify-content: space-around;padding-left: 0;padding-right: 0}
+   #personcenterpage #per_up>div>ul>li{background-color: #696969;padding: 0;margin: 1em 0}
+   #personcenterpage #per_head>div>.media>.media-body>p{position: absolute;bottom: 0;width:10em}
+}
+
+@media all and (min-width:768px) {
+   #personcenterpage .container{margin-top: 7em;margin-bottom:7em;border-radius: 8px;}
+   #personcenterpage #per_up{margin-top:0em;padding: 5em 1.5em}
+   #personcenterpage #per_up>.tab-content{border: 1px solid silver;max-height: 420px;overflow: hidden}
+   #personcenterpage #per_up>div>ul>li{background-color: #7a7a7a;padding: 0;margin: 1em 0}
+   #personcenterpage #per_head>div>.media>.media-body>p{position: absolute;bottom: 0;width:10em}
+
+}
+*{margin: 0;padding: 0;font-family: "΢���ź�"}
+
+#personcenterpage #per_head>div:last-of-type{position: relative}
+#personcenterpage #per_head>div:last-of-type>p{position: absolute;bottom: 0}
+#personcenterpage #per_head>div>ul,#per_up>div{border-radius:8px}
+#personcenterpage #per_head{border-bottom:1px solid silver;padding-bottom: 1em }
+#personcenterpage #per_head>div>.media>.media-left>img{width: 8em;margin-top: 0.5em}
+#personcenterpage #per_head>div>.media>.media-body{position:relative;}
+
+#personcenterpage #per_head>div>.media>.media-body>.h3{position: absolute;right: 0;color: green}
+#personcenterpage #per_head>div>.media>.media-body>.h4{position: absolute;right: 0;bottom: 0;color: #ff5a3f
+}
+#personcenterpage #per_head>div>.media>.media-body>p>span{color: #498be2;}
+
+#personcenterpage #per_up>div>ul{padding: 1em;border: 1px solid silver;border-radius: 8px}
+#personcenterpage #per_up>div>ul>.active>a{color: #7f7f7f;font-weight: bold;background-color: white}
+#personcenterpage #per_up>div>ul>li{border-radius: 8px}
+#personcenterpage #per_up>div>ul>li>a{color: white;text-align: center;border-radius:8px}
+#personcenterpage #per_up>div>ul>li>a>.glyphicon{margin-right: 1em}
+#personcenterpage #per_up>div>ul>li>a:hover{color: #7f7f7f;text-align: center;}
+
+#personcenterpage #per_up>.tab-content>div>h3{padding: 0.5em;margin: 0}
+#personcenterpage #per_up>.tab-content>div>.pager{margin: 0}
+#personcenterpage #per_up>.tab-content>.tab-pane>ul{padding: 1em}
+#personcenterpage #per_up>.tab-content>.tab-pane>ul>li{margin-top: 1em;}
+#personcenterpage #per_up>.tab-content>.tab-pane>ul>li>span:last-of-type{margin-right: 2em}
+#personcenterpage #per_up>.tab-content>.tab-pane>ul>li>.glyphicon-edit>span{padding-left: 1em}
+
+#personcenterpage #per_2>.end_align{display: flex;justify-content: center;flex-direction: row;align-items: baseline;margin-top: 0.5em}
+#personcenterpage #per_2>div:last-of-type{margin:1em;}
+
+#personcenterpage #per_3>.list-group{margin-bottom: 0em}
+#personcenterpage #per_3>ul>li>span{border-right: 1px solid silver;padding-right:0.5em;margin-right: 0.5em}
+#personcenterpage #per_3>ul>li>.badge{margin: 0;padding: 1em}
+#personcenterpage #per_4>ul>li>span{border-right: 1px solid silver;padding-right:0.5em;margin-right: 0.5em}
+#personcenterpage #per_3>ul>li>.collapse{background-color: silver;border-radius: 8px}
+/*���Ͷ���Ϣ*/
+#personcenterpage #per_up>div>.sendMassage{border-radius: 8px;border: 1px silver solid;padding: 0.5em;margin-top: 0.2em}
+#personcenterpage #per_up>div>.sendMassage>.h3{margin-top: 0.3em}
+
+#personcenterpage #personPwd{margin: 0.5em 0}
+#personcenterpage #personPwd>div{padding:0.4em 0.1em}

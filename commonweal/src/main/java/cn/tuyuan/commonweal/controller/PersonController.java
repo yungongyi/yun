@@ -20,7 +20,7 @@ public class PersonController {
 	
 	@RequestMapping(value="/test",method=RequestMethod.GET)
 	public ModelAndView getPerson() {
-		System.out.println("你考虑尽快了解来看经济考虑好");
+		System.out.println("你考虑尽快了dasd解来asaas看经济考虑好");
 		return new ModelAndView("hello");
 		
 	}
