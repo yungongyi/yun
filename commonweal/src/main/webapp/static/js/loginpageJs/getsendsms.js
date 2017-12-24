@@ -1,5 +1,5 @@
 $(function(){
-	
+	//登录获取的验证码
 	 $("#sendsms").click(function(){
 		var fphone = $("input[name='fphone']").val();
 		alert(fphone);
@@ -14,4 +14,19 @@ $(function(){
 			}
 		});
 	});
+	//注册获取的验证码
+	 $("#getzhuceyanzhengma").click(function(){
+			var fphone = $("input[name='phone']").val();
+			alert(fphone);
+			$.ajax({
+				url:"/commonweal/login/getiphone/"+fphone,
+				dataType:"json",
+				success:function(data){
+					alert(data);
+				},
+				error:function(error){
+					alert(error);
+				}
+			});
+		});
 });

@@ -1,11 +1,9 @@
 package cn.tuyuan.commonweal.serviceimpl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.tuyuan.commonweal.dao.PersonDao;
 import cn.tuyuan.commonweal.pojo.Person;
@@ -16,6 +14,7 @@ import cn.tuyuan.commonweal.service.PersonService;
  * @version 1.0
  */
 @Service("personService")
+@Transactional()
 public class PersonServiceImpl implements PersonService {
 
 	@Autowired
@@ -44,8 +43,17 @@ public class PersonServiceImpl implements PersonService {
 		Person person = personDao.getPerson(iphone);
 		return person;
 	}
+	//用户注册 
+	
 
 
-
-
+	//根据手机号码判断用户
+	public boolean getPersonById(String iphone) { 
+		
+		return personDao.getPersonByid(iphone);
+	}
+ 
+	public int savePerson(Person person) {
+	     return   personDao.savePerson(person); 
+	}
 }

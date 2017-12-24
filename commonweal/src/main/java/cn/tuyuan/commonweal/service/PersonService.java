@@ -24,4 +24,15 @@ public interface PersonService {
 	 */
 	Person  fastLogin(String iphone);
 	
+	/**   2017年12月24日
+	 * @param 用户注册
+	 * @return 影响番薯
+	 */
+	int savePerson(Person person);
+	
+	/**
+	 * @param 根据手机id判断用户是否存在
+	 * @return
+	 */
+	boolean getPersonById(String iphone);
 }

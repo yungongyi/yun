@@ -1,5 +1,5 @@
 $(function() {
-	var nickname = $('input[name=nickname]');
+	var nickname = $('input[name=name]');
 	var phone = $('input[name=phone]');
 	var passwords = $('input[name=password]');
 	var yanzhengma = $('input[name=yanzhengma]');
@@ -9,7 +9,28 @@ $(function() {
 	var isnickname = $('.isnickname');
 	//手机号的正则表达式
 	var phoneReg = /^1[0-9]{10}$/;
-	//验证手机号
+	
+	
+	
+	
+	//定义一个常亮是否存在
+	var isexists ;
+	function checkexists(){
+		//测试该手机号是否存在
+		$.ajax({
+			url:"/commonweal/login/checkPerson/"+phone.val(),
+			dataType:"json",
+			success:function(data){ 
+				isexists = data;
+				return data;
+			}
+		});
+	}
+
+	
+	
+
+	//验证手机号是否为空
 	function checkphonenull() {
 		if(phone.val() == '') {
 			isphone.show(500);
@@ -19,8 +40,14 @@ $(function() {
 			isphone.show(500);
 			isphone.html('手机号格式不正确');
 			return false;
-		} else {
+		} else if(isexists==false){
+			isphone.show(500);
+			isphone.html('手机号已经存在');
+			$("#getzhuceyanzhengma").hide(500);
+			return false;
+		}else {
 			isphone.hide(500);
+			$("#getzhuceyanzhengma").show(500);
 			return true;
 		}
 	}
@@ -41,9 +68,6 @@ $(function() {
 			isyanzhengma.show(500);
 			isyanzhengma.html('验证码不能为空');
 			return false;
-		} else if(yanzhengma.val() != 1234) {
-			isyanzhengma.show(500);
-			isyanzhengma.html('验证码不正确');
 		} else {
 			isyanzhengma.hide(500);
 			return true;
@@ -60,7 +84,7 @@ $(function() {
 			return true;
 		}
 	}
-
+	
 	checknull(phone);
 	checknull(passwords);
 	checknull(yanzhengma);
@@ -69,6 +93,7 @@ $(function() {
 		inputs.on("focus", function() {}).on("blur", function() {
 			if(inputs == phone) {
 				checkphonenull();
+				checkexists();
 			} else if(inputs == passwords) {
 				checkpasswordnull();
 			} else if(inputs == yanzhengma) {
@@ -82,16 +107,18 @@ $(function() {
 		var flag = true;
 		if(checkphonenull()  == false) {
 			flag = false;
-		} else
-		if(checkpasswordnull() == false) {
-		    flag = false;
-		} else
-		if(checkyanzhengmanull() == false) {
+		} else if (isexists == false){
 			flag = false;
 		}else
-		if(checknicknamenull() == false) {
-			flag = false;
-		}
+			if(checkpasswordnull() == false) {
+				flag = false;
+			} else
+				if(checkyanzhengmanull() == false) {
+					flag = false;
+				}else
+					if(checknicknamenull() == false) {
+						flag = false;
+					}
 		return flag;
 	});
 });
