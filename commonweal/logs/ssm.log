@@ -1,0 +1,6 @@
+[INFO] [2017-12-23 12:18:25][org.hibernate.annotations.common.Version]HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+[INFO] [2017-12-23 12:18:25][org.hibernate.Version]HHH000412: Hibernate Core {4.3.5.Final}
+[INFO] [2017-12-23 12:18:25][org.hibernate.cfg.Environment]HHH000205: Loaded properties from resource hibernate.properties: {hibernate.bytecode.use_reflection_optimizer=false}
+[INFO] [2017-12-23 12:18:25][org.hibernate.cfg.Environment]HHH000021: Bytecode provider name : javassist
+[INFO] [2017-12-23 12:18:26][org.hibernate.cfg.Configuration]HHH000043: Configuring from resource: /hibernate.cfg.xml
+[INFO] [2017-12-23 12:18:26][org.hibernate.cfg.Configuration]HHH000040: Configuration resource: /hibernate.cfg.xml
