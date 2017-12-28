@@ -1,0 +1,33 @@
+$(function(){
+    $(document).ready(function(){
+        $("#fourdiv").hide();
+        $("#fivediv").hide();
+        $("#sixdiv").hide();
+    });
+    $("#secondli").click(function(){
+        $("#thirddiv").show();
+        $("#fourdiv").hide();
+        $("#fivediv").hide();
+        $("#sixdiv").hide();
+    });
+    $("#thirdli").click(function(){
+        $("#thirddiv").hide();
+        $("#fourdiv").show();
+        $("#fivediv").hide();
+        $("#sixdiv").hide();
+    });
+    $("#fourli").click(function(){
+        $("#thirddiv").hide();
+        $("#fourdiv").hide();
+        $("#fivediv").show();
+        $("#sixdiv").hide();
+    });
+    $("#fiveli").click(function(){
+        $("#thirddiv").hide();
+        $("#fourdiv").hide();
+        $("#fivediv").hide();
+        $("#sixdiv").show();
+    });
+});
+
+
