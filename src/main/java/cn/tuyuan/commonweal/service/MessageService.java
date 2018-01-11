@@ -33,6 +33,20 @@ public interface MessageService {
 	 * @param id
 	 *            消息id
 	 */
-	void delMessage(Integer messageId);
+	String delMessage(Integer messageId);
+	
+	/**
+	 * @describe 查询消息信息
+	 * @param personId
+	 *            发送人id
+	 * @return Message
+	 */
+	List<Message> getAllMessageByPersonId(Integer personId);
+    
+	//根据用户id 消息id 删除消息信息
+	boolean deleteMessageByPersonId(Integer messageId ,Integer personId);
+	
+	//插入一条用户信息
+	 int insertMessage(Integer sendId, Integer personid, String message);
 
 }

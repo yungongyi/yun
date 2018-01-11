@@ -18,12 +18,14 @@ public class InfoController {
 	@Resource
 	private InfoService infoService;
 
+	// 查询所有通知信息
 	@RequestMapping(value = "/getInfo", method = RequestMethod.GET)
 	public List<Info> getInfo() {
 		List<Info> list = infoService.getAllInfo();
 		return list;
 	}
 
+	// 根据Id查询通知信息
 	@RequestMapping(value = "/getInfoById", method = RequestMethod.GET)
 	public List<Info> getInfoByInfoId(
 			@RequestParam(value = "id", required = false) Integer id) {
@@ -41,14 +43,24 @@ public class InfoController {
 		return infoList;
 	}
 
+	// 添加通知信息
 	@RequestMapping(value = "/addInfo", method = RequestMethod.GET)
-	public void addInfo(@RequestParam(value = "content") String content) {
+	public String addInfo(@RequestParam(value = "content") String content) {
+		List<Info> list = infoService.getAllInfo();
+		for(Info i : list){
+			if(i.getInfoContent().equals(content)){
+				//表示有数据重复
+				return "error";
+			}
+		}
 		infoService.saveInfo(content);
+		return "success";
 	}
 
+	// 删除通知信息
 	@RequestMapping(value = "/delInfo", method = RequestMethod.GET)
-	public void delInfo(@RequestParam(value = "id") Integer id) {
-		infoService.delInfo(id);
+	public String delInfo(@RequestParam(value = "id") Integer id) {
+		return infoService.delInfo(id);
 	}
 
 }

@@ -5,12 +5,15 @@ package cn.tuyuan.commonweal.pojo;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -29,32 +32,16 @@ public class Resource implements java.io.Serializable {
 	private String resourcePath;
 	private Type type;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "typeId")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="typeId")
 	public Type getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(Type type) {
 		this.type = type;
 	}
 
-	private String resourceSource;
-	
-
-
-	public Resource() {
-	}
-
-
-	public Resource(Integer resourceId, String resourcePath, Type type,
-			String resourceSource) {
-		super();
-		this.resourceId = resourceId;
-		this.resourcePath = resourcePath;
-		this.type = type;
-		this.resourceSource = resourceSource;
-	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -74,19 +61,6 @@ public class Resource implements java.io.Serializable {
 
 	public void setResourcePath(String resourcePath) {
 		this.resourcePath = resourcePath;
-	}
-
-	
-
-	@Column(name = "resourceSource", length = 50)
-	public String getResourceSource() {
-		return this.resourceSource;
-	}
-
-	public void setResourceSource(String resourceSource) {
-		this.resourceSource = resourceSource;
-	}
-
-	
+	}	
 
 }

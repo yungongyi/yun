@@ -2,8 +2,11 @@ package cn.tuyuan.commonweal.pojo;
 
 // Generated 2017-12-26 15:38:16 by Hibernate Tools 4.0.0
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,20 +17,20 @@ import javax.persistence.Table;
 @Table(name = "region", catalog = "commonweal")
 public class Region implements java.io.Serializable {
 
-	private double regionId;
+	private Integer regionId;
 	private String regionCode;
 	private String regionName;
-	private double parentId;
-	private double regionLevel;
-	private double regionOrder;
+	private Integer parentId;
+	private Integer regionLevel;
+	private Integer regionOrder;
 	private String regionNameEn;
 	private String regionShortnameEn;
 
 	public Region() {
 	}
 
-	public Region(double regionId, String regionCode, String regionName,
-			double parentId, double regionLevel, double regionOrder,
+	public Region(Integer regionId, String regionCode, String regionName,
+			Integer parentId, Integer regionLevel, Integer regionOrder,
 			String regionNameEn, String regionShortnameEn) {
 		this.regionId = regionId;
 		this.regionCode = regionCode;
@@ -40,16 +43,17 @@ public class Region implements java.io.Serializable {
 	}
 
 	@Id
-	@Column(name = "REGION_ID", unique = true, nullable = false, precision = 22, scale = 0)
-	public double getRegionId() {
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "REGION_ID", unique = true)
+	public Integer getRegionId() {
 		return this.regionId;
 	}
 
-	public void setRegionId(double regionId) {
+	public void setRegionId(Integer regionId) {
 		this.regionId = regionId;
 	}
 
-	@Column(name = "REGION_CODE", nullable = false, length = 100)
+	@Column(name = "REGION_CODE",length = 100)
 	public String getRegionCode() {
 		return this.regionCode;
 	}
@@ -58,7 +62,7 @@ public class Region implements java.io.Serializable {
 		this.regionCode = regionCode;
 	}
 
-	@Column(name = "REGION_NAME", nullable = false, length = 100)
+	@Column(name = "REGION_NAME", length = 100)
 	public String getRegionName() {
 		return this.regionName;
 	}
@@ -67,34 +71,34 @@ public class Region implements java.io.Serializable {
 		this.regionName = regionName;
 	}
 
-	@Column(name = "PARENT_ID", nullable = false, precision = 22, scale = 0)
-	public double getParentId() {
+	@Column(name = "PARENT_ID")
+	public Integer getParentId() {
 		return this.parentId;
 	}
 
-	public void setParentId(double parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 
-	@Column(name = "REGION_LEVEL", nullable = false, precision = 22, scale = 0)
-	public double getRegionLevel() {
+	@Column(name = "REGION_LEVEL")
+	public Integer getRegionLevel() {
 		return this.regionLevel;
 	}
 
-	public void setRegionLevel(double regionLevel) {
+	public void setRegionLevel(Integer regionLevel) {
 		this.regionLevel = regionLevel;
 	}
 
-	@Column(name = "REGION_ORDER", nullable = false, precision = 22, scale = 0)
-	public double getRegionOrder() {
+	@Column(name = "REGION_ORDER",  scale = 0)
+	public Integer getRegionOrder() {
 		return this.regionOrder;
 	}
 
-	public void setRegionOrder(double regionOrder) {
+	public void setRegionOrder(Integer regionOrder) {
 		this.regionOrder = regionOrder;
 	}
 
-	@Column(name = "REGION_NAME_EN", nullable = false, length = 100)
+	@Column(name = "REGION_NAME_EN", length = 100)
 	public String getRegionNameEn() {
 		return this.regionNameEn;
 	}
@@ -103,7 +107,7 @@ public class Region implements java.io.Serializable {
 		this.regionNameEn = regionNameEn;
 	}
 
-	@Column(name = "REGION_SHORTNAME_EN", nullable = false, length = 10)
+	@Column(name = "REGION_SHORTNAME_EN",length = 10)
 	public String getRegionShortnameEn() {
 		return this.regionShortnameEn;
 	}

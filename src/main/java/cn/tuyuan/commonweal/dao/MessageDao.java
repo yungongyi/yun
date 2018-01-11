@@ -19,8 +19,7 @@ public interface MessageDao {
 
 	/**
 	 * @describe 查询消息信息
-	 * @param personId
-	 *            发送人id
+	 * @param personName 姓名
 	 * @return Message
 	 */
 	Message getMessage(Integer personId);
@@ -30,6 +29,17 @@ public interface MessageDao {
 	 * @param id
 	 *            消息id
 	 */
-	void delMessage(Integer messageId);
+	String delMessage(Integer messageId);
+	
+	List<Message> getAllMessageByPersonId(Integer personId);
+	
+	 /*/ @param personId
+	 * @param messageId
+	 * @return 影响行数
+	 * 删除指定的信息
+	 */
+	int  deleteMessagebyPersonId(Integer personId ,Integer messageId);
+	
+	int  insertMessage(Message message);
 
 }

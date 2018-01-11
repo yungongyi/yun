@@ -47,10 +47,10 @@
 						<!--Date的日期转换器 -->
 						<value>WriteDateUseDateFormat</value>
 						<value>PrettyFormat</value>
-                        <value>WriteMapNullValue</value>
-                        <value>WriteNullStringAsEmpty</value>
-                        <value>WriteNullListAsEmpty</value>
-                        <value>DisableCircularReferenceDetect</value>
+						<value>WriteMapNullValue</value>
+						<value>WriteNullStringAsEmpty</value>
+						<value>WriteNullListAsEmpty</value>
+						<value>DisableCircularReferenceDetect</value>
 					</list>
 				</property>
 			</bean>
@@ -92,14 +92,29 @@
 	</bean>
 
 	<!-- 全局异常 SimpleMappingExceptionResolver -->
-	<bean
+	<!-- <bean
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<!-- key 自定义异常的权限名 让loginController中 自定义的运行时异常提示信息在 error。jsp中显示 ，此处的error逻辑视图名 -->
+				key 自定义异常的权限名 让loginController中 自定义的运行时异常提示信息在 error。jsp中显示 ，此处的error逻辑视图名
 				<prop key="java.lang.Exception">404</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
+
+
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="cn.tuyuan.commonweal.intercepter.PublicIntercepter">
+				<property name="excludedUrls">
+					<list>
+						<value>/</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>   

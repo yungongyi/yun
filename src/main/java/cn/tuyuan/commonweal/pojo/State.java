@@ -25,19 +25,19 @@ import javax.persistence.Table;
 @Table(name = "state", catalog = "commonweal")
 public class State implements java.io.Serializable {
 
-	private Integer stateId;
+	private Integer stateId; //这是Id
 	private Integer tableId;
-	
 
-	private String stateName;
-	
+
+	private String stateName;//状态名
+
 
 	public State() {
 	}
 
-	
 
-	
+
+
 	public State(Integer stateId, Integer tableId, String stateName) {
 		super();
 		this.stateId = stateId;

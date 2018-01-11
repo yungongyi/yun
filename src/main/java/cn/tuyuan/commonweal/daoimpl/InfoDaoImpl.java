@@ -1,6 +1,7 @@
 package cn.tuyuan.commonweal.daoimpl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,9 +40,8 @@ public class InfoDaoImpl extends HibernateDaoSupport implements InfoDao {
 	 */
 	@Override
 	public List<Info> getAllInfo() {
-		String hql = "from Info";
-		List<Info> list = (List<Info>) this.getHibernateTemplate().find(hql);
-		return list;
+		String hql = " from Info order by infoCreateDate desc";
+		return (List<Info>) this.getHibernateTemplate().find(hql);
 	}
 
 	/**
@@ -77,15 +77,16 @@ public class InfoDaoImpl extends HibernateDaoSupport implements InfoDao {
 	 * @param 通知Id
 	 */
 	@Override
-	public void delInfo(Integer id) {
+	public String delInfo(Integer id) {
 		Session session = null;
+		int num = 0;
 		session = this.getHibernateTemplate().getSessionFactory()
 				.getCurrentSession();
 		try {
 			String hql = "delete Info where infoId = ?";
 			Query query = session.createQuery(hql);
 			query.setInteger(0, id);
-			query.executeUpdate();
+			num = query.executeUpdate();
 			session.beginTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,6 +95,10 @@ public class InfoDaoImpl extends HibernateDaoSupport implements InfoDao {
 			if (session != null)
 				session.close();
 		}
+		if (num > 0) {
+			return "true";
+		}
+		return "false";
 
 	}
 

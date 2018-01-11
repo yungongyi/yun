@@ -2,8 +2,10 @@ package cn.tuyuan.commonweal.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import cn.tuyuan.commonweal.dao.InfoDao;
 import cn.tuyuan.commonweal.pojo.Info;
 import cn.tuyuan.commonweal.service.InfoService;
@@ -38,10 +40,10 @@ public class InfoServiceImpl implements InfoService {
 		infoDao.saveInfo(content);
 	}
 
-	//删除通知信息
+	// 删除通知信息
 	@Override
-	public void delInfo(Integer id) {
-		infoDao.delInfo(id);
+	public String delInfo(Integer id) {
+		return infoDao.delInfo(id);
 	}
 
 }

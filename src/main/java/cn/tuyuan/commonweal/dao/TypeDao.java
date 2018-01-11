@@ -15,5 +15,12 @@ public interface TypeDao {
 	 * @param id
 	 * @return
 	 */
-	List<Type> getTypeByTableId(int id);
+	List<Type> getTypeByTypeId(int id);
+	/**
+	 * @see  
+	 * @param 显示
+	 * @return
+	 */
+	List<Type> getTypeByTableId(int tableId);
+	void addType(Type type);
 }

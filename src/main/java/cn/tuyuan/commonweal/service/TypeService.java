@@ -10,5 +10,8 @@ import cn.tuyuan.commonweal.pojo.Type;
  */
 public interface TypeService {
 
-	public List<Type> getTypeByTableId(int id);
+	//根据tableId 查询type
+	public List<Type> getTypeByTableId(int tableId);
+	public List<Type> findTypeByTypeId(String id);
+	int insertType(Type type);
 }

@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import cn.tuyuan.commonweal.dao.MessageDao;
+import cn.tuyuan.commonweal.pojo.Info;
 import cn.tuyuan.commonweal.pojo.Message;
 
 @Repository("messageDao")
@@ -33,10 +34,8 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	 */
 	@Override
 	public List<Message> getAllMessage() {
-		String hql = "from Message";
-		List<Message> list = (List<Message>) this.getHibernateTemplate().find(
-				hql);
-		return list;
+		String hql = " from Message order by sendDate desc";
+		return (List<Message>) this.getHibernateTemplate().find(hql);
 	}
 
 	/**
@@ -45,6 +44,14 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	 *            发送人id
 	 * @return Message
 	 */
+
+	public List<Message> getAllMessageByPersonId(Integer personId) {
+		List<Message> messages = (List<Message>) this.getHibernateTemplate()
+				.getSessionFactory().getCurrentSession()
+				.get(Message.class, personId);
+		return messages;
+	}
+
 	@Override
 	public Message getMessage(Integer personId) {
 		String hql = "from Message where messageId =?";
@@ -55,15 +62,16 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	}
 
 	@Override
-	public void delMessage(Integer messageId) {
+	public String delMessage(Integer messageId) {
 		Session session = null;
+		int num = 0;
 		session = this.getHibernateTemplate().getSessionFactory()
 				.getCurrentSession();
 		try {
 			String hql = "delete Message where messageId = ?";
 			Query query = session.createQuery(hql);
 			query.setInteger(0, messageId);
-			query.executeUpdate();
+			num = query.executeUpdate();
 			session.beginTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,6 +80,31 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 			if (session != null)
 				session.close();
 		}
+		if (num > 0) {
+			return "true";
+		}
+		return "false";
+
+	}
+
+	// 删除指定的消息
+	public int deleteMessagebyPersonId(Integer personId, Integer messageId) {
+		Session session = this.getHibernateTemplate().getSessionFactory()
+				.getCurrentSession();
+		String hql = "delete from Message where messageId =? and personId =?";
+		Query query = session.createQuery(hql);
+		query.setInteger(0, messageId);
+		query.setInteger(1, personId);
+		int result = query.executeUpdate();
+		return result;
+	}
+
+	// 插入一条消息信息
+	public int insertMessage(Message message) {
+		Session session = this.getHibernateTemplate().getSessionFactory()
+				.getCurrentSession();
+		int count = (int) session.save(message);
+		return count;
 	}
 
 }

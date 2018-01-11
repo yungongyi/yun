@@ -30,12 +30,14 @@ public interface InfoDao {
 	 *            content 通知内容
 	 */
 	void saveInfo(String content);
+	
 
 	/**
 	 * @describe 删除通知信息
 	 * @param id
 	 *            通知id
+	 * @return String
 	 */
-	void delInfo(Integer id);
+	String delInfo(Integer id);
 
 }

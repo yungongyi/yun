@@ -8,6 +8,8 @@ package cn.tuyuan.commonweal.util;
 public class Constants {
 	//保存登录用户对象
 	public static final	String SESSION = "personSession";
+	
+	public static final	String SOURCEPATH = "http:\\\\\\localhost:8080/static/";
 }
 
  

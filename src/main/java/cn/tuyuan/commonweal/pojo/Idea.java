@@ -3,11 +3,15 @@ package cn.tuyuan.commonweal.pojo;
 // Generated 2017-12-26 15:38:16 by Hibernate Tools 4.0.0
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -60,7 +64,7 @@ public class Idea implements java.io.Serializable {
 		this.ideaId = ideaId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name = "stateId")
 	public State getState() {
 		return this.state;

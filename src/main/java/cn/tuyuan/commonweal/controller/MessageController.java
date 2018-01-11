@@ -2,17 +2,10 @@ package cn.tuyuan.commonweal.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.alibaba.fastjson.JSON;
-
-import cn.tuyuan.commonweal.pojo.Info;
 import cn.tuyuan.commonweal.pojo.Message;
 import cn.tuyuan.commonweal.service.MessageService;
 
@@ -25,12 +18,13 @@ public class MessageController {
 
 	@RequestMapping(value = "/getMessage", method = RequestMethod.GET)
 	public List<Message> getMessage() {
-		List<Message> list = messageService.getAllMessage();
+		List<Message> list = null;
+		list = messageService.getAllMessage();
 		return list;
 	}
 
 	@RequestMapping(value = "/getMessageById", method = RequestMethod.GET)
-	public List<Message> getMessage(Integer personId) {
+	public List<Message> getMessageById(Integer personId) {
 		List<Message> messageList = null;
 		// 判断id是否为空
 		if (personId == null) {
@@ -46,7 +40,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/delMessage", method = RequestMethod.GET)
-	public void delMessage(Integer messageId) {
-		messageService.delMessage(messageId);
+	public String delMessage(Integer messageId) {
+		return messageService.delMessage(messageId);
 	}
 }

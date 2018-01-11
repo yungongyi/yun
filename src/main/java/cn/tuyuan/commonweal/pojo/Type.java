@@ -4,11 +4,14 @@ package cn.tuyuan.commonweal.pojo;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,6 +27,8 @@ public class Type implements java.io.Serializable {
 
 	private Integer typeId;
 	private Integer tableId;
+	
+
 	@Column(name = "tableId")
 	public Integer getTableId() {
 		return tableId;
@@ -40,6 +45,14 @@ public class Type implements java.io.Serializable {
 	}
 
 
+	public Type(Integer typeId, Integer tableId, String typeName) {
+		super();
+		this.typeId = typeId;
+		this.tableId = tableId;
+		this.typeName = typeName;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "typeId", unique = true, nullable = false)
@@ -48,7 +61,10 @@ public class Type implements java.io.Serializable {
 	}
 
 	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
+		if(typeId<0){
+			this.typeId = 12;
+		}
+		this.typeId=typeId;
 	}
 
 	@Column(name = "typeName", nullable = false, length = 50)
