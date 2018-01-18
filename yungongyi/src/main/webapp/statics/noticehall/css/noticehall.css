@@ -1,0 +1,66 @@
+#halloption span,
+			li,
+			option {
+				color: black;
+			}
+			
+			@media all and (min-width:343px) {
+				#halloption,
+				#noticehall {
+					padding-top: 20px;
+				}
+				#NoticeHall .area,
+				.persontype {
+					padding: 0px;
+				}
+				#NoticeHall .areas,
+				.persontypes {
+					display: inline-block;
+					list-style: none;
+					margin-right: 30px;
+					padding: 2px 10px;
+				}
+				#NoticeHall .actives {
+					background: #34495E;
+					border-radius: 5px;
+					color: white;
+				}
+				#NoticeHall .areas:hover,
+				.persontypes:hover,
+				.search:hover {
+					cursor: pointer;
+				}
+				#NoticeHall .input-group-addon:hover {
+					background-color: #34495E;
+					color: white;
+				}
+				#NoticeHall .phonearea,
+				.phonepersontype {
+					display: none;
+				}
+				#NoticeHall .droptitle {
+					color: lightslategrey;
+					line-height: 30px;
+					font-size: 20px;
+				}
+			}
+			
+			@media all and (max-width:342px) {
+				.container {
+					padding: 0px
+				}
+				#NoticeHall .area,
+				.persontype {
+					display: none;
+				}
+				#halloption {
+					padding-top: 20px;
+				}
+				#NoticeHall .phonearea,
+				.phonepersontype {
+					padding: 2px 5px;
+					border-radius: 5px;
+				}
+			}
+			
+			 

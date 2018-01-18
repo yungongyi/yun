@@ -1,0 +1,46 @@
+.container {
+	margin-top: 7em;
+	font-family: "Î¢ÈíÑÅºÚ"
+}
+
+#footer_detail_left>div>.f_left {
+	font-weight: bold;
+	border-radius: 8px;
+	text-align: center;
+	border: 1px solid silver;
+	padding: 0.5em;
+	margin-top: 0.1em;
+	font-size: larger
+}
+
+#footer_detail_left>div>.f_left:hover {
+	text-decoration: none;
+	background-color: #00aeda;
+	color: white
+}
+
+#footer_detail_left>div>.f_left:focus {
+	text-decoration: none;
+	background-color: #1397da;
+	color: white
+}
+
+#footer_detail_left>div {
+	background-color: rgba(255, 255, 255, 0.7);
+	border: 1px solid silver;
+	border-radius: 8px;
+	padding: 1em;
+	margin: 1em
+}
+
+#footer_detail_right>div>div {
+	background-color: rgba(255, 255, 255, 0.7);
+	height: 30em;
+	border: 1px solid silver;
+	border-radius: 8px;
+	overflow: scroll;
+	padding: 1em
+}
+.footer_bg{
+	position: fixed; background-size: cover;width:100%
+}

@@ -1,0 +1,42 @@
+body {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 62.5%;
+	background: #FAF2CC;
+}
+
+
+
+#seconddiv {
+	padding-top: 10em
+}
+
+p, h4 {
+	color: white;
+	margin-bottom: 0.5em
+}
+hr{border: 0.5px solid lightgray;width:100%}
+@media all and (min-width: 768px) {
+	#noticeInfo {
+	padding: 10em 0 7em 0;	
+}
+	#noticeInfo>.row {
+		background-color: #4e85b2 ;
+		margin: 0;
+		padding: 1em;
+		border-radius: 8px;
+		
+	}
+}
+
+@media all and (max-width: 767px) {
+	#noticeInfo {
+	padding: 5em 0 1px 0;	
+}
+	#noticeInfo>.row {
+		background-color: #4e85b2 ;
+		margin: 0;
+		padding: 1em;
+		border-radius: 8px;
+		
+	}
+}

@@ -1,0 +1,77 @@
+body {
+	background: #ddf0ed;
+}
+
+
+
+@media all and (min-width:1200px) {
+	/*閺嶅洭顣�*/
+	#RegisterPage #title {
+		padding: 60px 0px;
+	}
+	/*閺堬拷婢舵牞绔熷鍡欐畱娑撳﹤顦绘潏纭呯獩*/
+	#RegisterPage .logincontainer {
+		border-radius: 5px;
+		margin-top: 30px;
+	}
+}
+
+@media all and (min-width:768px) {
+	#RegisterPage {
+	background-color: silver;
+	padding:10em 0 7em 0;
+}
+	/*閺嶅洭顣�*/
+	#RegisterPage #title {
+		padding: 40px 0px;
+	}
+	/*閺堬拷婢舵牞绔熷鍡欐畱娑撳﹤顦绘潏纭呯獩*/
+	#RegisterPage .logincontainer {
+		margin-top: 10px;
+	}
+}
+
+@media all and (max-width:767px) {
+	#RegisterPage {
+	background-color: silver;
+	padding:4em 0 0.1em 0;
+}
+	/*閺嶅洭顣�*/
+	#RegisterPage 	#title {
+		padding: 40px 0px;
+	}
+	/*閺堬拷婢舵牞绔熷鍡欐畱娑撳﹤顦绘潏纭呯獩*/
+	#RegisterPage .logincontainer {
+		margin-top: 5px;
+	}
+}
+
+#RegisterPage .warning {
+	color: brown;
+	float: left;
+}
+/*妤犲矁鐦夐惍锟�*/
+#RegisterPage .getyanzhengma, .fasongzhong, .daojishi {
+	color: brown;
+	float: left;
+	padding-top: 15px;
+}
+
+#RegisterPage .getyanzhengma:hover {
+	text-decoration: none;
+	color: crimson;
+	cursor: pointer;
+}
+/*濞夈劌鍞介幐澶愭尦*/
+#RegisterPage .gologin {
+	float: right;
+}
+
+#RegisterPage .gologin:hover {
+	color: chocolate;
+	cursor: pointer;
+}
+
+#RegisterPage .isyanzhengma, .ispassword, .isphone, .isnickname {
+	display: none;
+}

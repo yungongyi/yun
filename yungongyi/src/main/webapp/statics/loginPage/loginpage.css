@@ -1,0 +1,127 @@
+body {
+	background: #ddf0ed;
+	font-family: "寰蒋闆呴粦";
+}
+/*鏅�氱櫥褰曘�佸揩閫熺櫥褰曠殑瀛椾綋*/
+@media all and (min-width:1200px) {
+	#LoginPage #title {
+		padding: 60px 0px;
+	}
+	#LoginPage .logincontainer {
+		background-color: rgba(0, 0, 0, 0.3);
+		border-radius: 5px;
+		margin-top: 30px;
+	}
+	#verifyCanvas {
+		position: absolute;
+		margin-top: -33px;
+		margin-left: 150px;
+		padding:0px;
+		width: 70px;
+		height: 34px;
+	}
+	#v_container{
+	position:absolute;
+	margin-top:-3px;
+	}
+}
+
+@media all and (min-width:768px) {
+	#LoginPage #title {
+		padding: 40px 0px;
+	}
+	#LoginPage .logincontainer {
+		margin-top: 10px;
+	}
+	#verifyCanvas {
+	 float:right;
+	}
+}
+
+@media all and (max-width:767px) {
+	#LoginPage #title {
+		padding: 40px 0px;
+	}
+	#LoginPage .logincontainer {
+		margin-top: 5px;
+	}
+	#LoginPage #verifyCanvas {
+		margin-left: -80px;
+	}
+	#verifyCanvas {
+	 float:right;
+	}
+}
+
+@media all and (max-width:767px) {
+	#LoginPage #title {
+		padding: 40px 0px;
+	}
+	#LoginPage .logincontainer {
+		margin-top: 5px;
+	}
+}
+
+#LoginPage .loginkey, .fastloginkey {
+	font-size: 20px;
+}
+/*褰撴偓娴笂鍘绘椂鐨勬牱寮�*/
+#LoginPage .loginkey:hover, .fastloginkey:hover {
+	cursor: pointer;
+	color: orange;
+}
+
+#LoginPage .logintype {
+	padding-bottom: 30px;
+}
+
+#LoginPage .active {
+	color: chocolate;
+	font-weight: bold;
+}
+
+#LoginPage .active:hover {
+	color: chocolate;
+}
+/*楠岃瘉鐮�*/
+#LoginPage .getyanzhengma, .fasongzhong, .daojishi {
+	color: brown;
+	float: left;
+	padding-top: 15px;
+}
+
+#LoginPage .getyanzhengma:hover {
+	text-decoration: none;
+	color: crimson;
+	cursor: pointer;
+}
+/*娉ㄥ唽鎸夐挳*/
+#LoginPage .goregister {
+	float: right;
+}
+
+#LoginPage .goregister:hover {
+	color: chocolate;
+	cursor: pointer;
+}
+
+#LoginPage .warning {
+	color: brown;
+	float: left;
+}
+
+#LoginPage .isyanzhengma, .ispassword, .isphone, .fisyanzhengma,
+	.fisphone {
+	display: none;
+}
+
+#LoginPage #verifyCanvas {
+	border: 1px solid silver;
+	border-radius: 5px;
+}
+
+.logincontainer {
+	margin-top: 1px;
+	margin-bottom: 1px;
+	height: 100%;
+}
