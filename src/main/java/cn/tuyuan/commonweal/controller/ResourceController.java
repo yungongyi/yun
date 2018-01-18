@@ -1,6 +1,9 @@
 package cn.tuyuan.commonweal.controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -103,4 +107,83 @@ public class ResourceController {
 	// }
 	// return null;
 	// }
+	
+	/**
+	 * 资源查询
+	 */
+	@GetMapping("/getResource")
+	@ResponseBody
+	public Map<String,Object> getResource(){		
+		List<cn.tuyuan.commonweal.pojo.Resource> list =  resourceService.getResourceBytypeId(".txt");
+		FileReader fr=null;
+		FileReader fr1=null;
+		FileReader fr2=null;
+		BufferedReader br=null;
+		BufferedReader br1=null;
+		BufferedReader br2=null;
+		try{
+			//创 建二个FileReader对象
+			fr = new FileReader(list.get(0).getResourcePath());
+			fr1 = new FileReader(list.get(1).getResourcePath());
+			fr2 = new FileReader(list.get(2).getResourcePath());
+			//创建二个BufferedReader对象
+			br = new BufferedReader(fr);
+			br1 = new BufferedReader(fr1);
+			br2 = new BufferedReader(fr2);
+			//读取一行数据
+			String line1 =br.readLine();
+			String txt="";
+			String line2=br1.readLine();
+			String txt1="";
+			String line3=br2.readLine();
+			String txt2="";
+			//读取所有内容			
+			while(line1!=null){		
+				txt+=line1;
+				line1=br.readLine();	
+				
+			}
+			while(line2!=null){		
+				txt1+=line2;
+				line2=br1.readLine();			
+			}
+			while(line3!=null){		
+				txt2+=line3;
+				line3=br2.readLine();			
+			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("diushi",txt);
+			map.put("zhapian",txt1);
+			map.put("shiyaosu",txt2);		
+			return map;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(br!=null)
+					br.close();
+				if(fr!=null)
+					fr.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			try{
+				if(br1!=null)
+					br1.close();
+				if(fr1!=null)
+					fr1.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			try{
+				if(br2!=null)
+					br2.close();
+				if(fr2!=null)
+					fr2.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return null;			
+	}
 }

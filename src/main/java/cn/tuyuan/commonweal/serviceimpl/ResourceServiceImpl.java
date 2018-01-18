@@ -34,7 +34,7 @@ public class ResourceServiceImpl implements ResourceService {
 	 * 分页查询
 	 */
 	public List<Resource> findResourceList() {
-	
+
 		return resourcedao.getResourceList();
 	}
 
@@ -42,8 +42,6 @@ public class ResourceServiceImpl implements ResourceService {
 	public Resource saveResource(Resource resource) {
 		return resourcedao.addResource(resource);
 	}
-
-
 	/**
 	 * 根据ID查询所有
 	 */
@@ -51,5 +49,16 @@ public class ResourceServiceImpl implements ResourceService {
 	public List<Resource> getResourceByresourceId(Integer id) {		
 		return resourcedao.getResourceById(id);
 	}
-
+	//修改资源
+	public int updateResource(String resourcePath,Integer resourceId) {
+		return resourcedao.updateResource(resourcePath,resourceId);
+	}
+	/**
+	 * 根据类型查询资源
+	 */
+	@Override
+	public List<Resource> getResourceBytypeId(String name) {
+		// TODO Auto-generated method stub
+		return resourcedao.getResourceBytypeId(name);
+	}
 }

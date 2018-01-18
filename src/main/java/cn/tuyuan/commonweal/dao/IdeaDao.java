@@ -2,6 +2,8 @@ package cn.tuyuan.commonweal.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import cn.tuyuan.commonweal.pojo.Idea;
 
 /**
@@ -40,6 +42,12 @@ public interface IdeaDao {
 	 */
 	String delIdea(Integer ideaId);
 	
-	void addIdea(Idea idea);
+	/**
+	 * @describe 添加一条意见信息
+	 * @param content意见内容
+	 *            email邮箱
+	 */
+
+	int saveIdea(String content, String eamil,HttpSession se);
 
 }

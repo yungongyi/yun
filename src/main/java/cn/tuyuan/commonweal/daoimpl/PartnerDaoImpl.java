@@ -1,5 +1,6 @@
 package cn.tuyuan.commonweal.daoimpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -23,13 +24,12 @@ import cn.tuyuan.commonweal.pojo.Partner;
 public class PartnerDaoImpl extends HibernateDaoSupport implements PartnerDao {
 
 	public PartnerDaoImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	@Autowired 
 	public PartnerDaoImpl(@Qualifier("sessionFactory")SessionFactory sessionFactory){
 		this.setSessionFactory(sessionFactory);
 	}
-	
 	/**
 	 * 查询所有合作对象
 	 */
@@ -49,11 +49,9 @@ public class PartnerDaoImpl extends HibernateDaoSupport implements PartnerDao {
 	 * 添加合作对象
 	 */
 	@Override
-	public void addPartner(Partner p) {
-	
-		this.getHibernateTemplate().setCheckWriteOperations(false);
-		this.getHibernateTemplate().save(p);
-		System.err.println("遗鸥");
+	public int addPartner(Partner p) { 
+		int count = (int) this.getHibernateTemplate().getSessionFactory().getCurrentSession().save(p);
+		return count;
 	}
 	/**
 	 * 删除合作对象

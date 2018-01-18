@@ -15,10 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
  * 1.文件大小不能超过size
  * 2.
  */
-public class FileUpLoad {
-	static HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+public class FileUpLoad { 
 	//1.储存返回值
-	public static Map<String,Object> map;
+	public static Map<String,Object> map = new HashMap<String,Object>();
 	//2.图片类型 type=1
 	public static String [] imgType={"jpg","jpeg","png","pneg"};
 	//3.文档类型 type=2
@@ -26,17 +25,17 @@ public class FileUpLoad {
 	//4.音频类型 type=3
 	public static String [] voiceType={"mp3","flv","wav"};
 	//5.文件大小
-	public static Integer fileSize=1024000;
+	public static Integer fileSize=102400000;
 	//6.项目路径
 	public static String sourcePath="";
 	//7.磁盘路径(以后再用)
-	public static String realPath="D:\\apache-tomcat-7.0.82-windows-x64\\apache-tomcat-7.0.82\\Localsource";
-	
- 	String errorSize="文件大小不得超过"+fileSize;
-	
-	public static Map<String,Object> fileUpLoad(MultipartFile file,int type){
-		
-		map=new HashMap<String,Object>();
+	//public static String realPath="D:\\apache-tomcat-7.0.82-windows-x64\\apache-tomcat-7.0.82\\Localsource";
+
+	String errorSize="文件大小不得超过"+fileSize;
+
+	public static Map<String,Object> fileUpLoad(MultipartFile file,int type){	
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+		System.out.println("进入上传工具类");
 		//1.获取文件名字
 		String oldFileName=file.getOriginalFilename();
 		//2.获取文件后缀
@@ -53,26 +52,25 @@ public class FileUpLoad {
 			types=voiceType;
 			sourcePath="upload/voice";
 		}else{
-			map.put("typeError", "未选择类型");
+			map.put("error", "未选择类型");
 			return map;
 		}
 		if(checkSuffix(fileSuffix,types)==true){
-			map.put("typeError",true);
 		}else{
-			map.put("typeError", "文件类型错误");
+			map.put("error", "文件类型错误");
 			return map;
 		}
 		//4.判断文件大小
 		if(file.getSize()>fileSize){				
-			map.put("sizeError", "文件太大");
+			map.put("error", "文件太大");
 			return map;
-		}else{
-			map.put("sizeError", true);
 		}
 		//5.文件重命名
 		String newName=System.currentTimeMillis()+RandomUtils.nextInt(1000000)+"."+fileSuffix;
+		System.out.println(request.getSession().getServletContext().getRealPath("static"));
 		//6.执行文件复制操作
-		String path=request.getSession().getServletContext().getRealPath("static")+File.separator+sourcePath;		
+		String path=request.getSession().getServletContext().getRealPath("static")+File.separator+sourcePath;	
+		System.out.println(path);
 		File tempFlie=new File(path,newName);
 		if(!tempFlie.exists()){
 			tempFlie.mkdirs();
@@ -80,14 +78,14 @@ public class FileUpLoad {
 		try {
 			file.transferTo(tempFlie);
 		} catch (Exception e) {
-			map.put("copyError", "文件复制失败");
+			map.put("error","文件复制失败");
 			e.printStackTrace();
 			return 	map;		
 		}
 		map.put("realPath", path+File.separator+newName);
-		map.put("copyError", true);
-		String p= Constants.SOURCEPATH+"commonweal/"+sourcePath+"/"+newName;
-		map.put("newName", newName);	
+		//String p= Constants.SOURCEPATH+"commonweal/"+sourcePath+"/"+newName;
+		map.put("newName", newName);
+		map.put("error", "上传成功");
 		return map;
 	}
 	//文件格式判断
@@ -99,8 +97,6 @@ public class FileUpLoad {
 		}
 		return false;
 	}
-	
-	
 	//根据文件路径 获取文件名
 	/*public static String getFileNameByPath(String str){
 		String name=str.substring(str.lastIndexOf("\\")+1, str.length());
@@ -119,8 +115,8 @@ public class FileUpLoad {
 		}		
 		return false;
 	}
-	
-	
+
+
 	public static String[] getImgType() {
 		return imgType;
 	}
@@ -128,5 +124,5 @@ public class FileUpLoad {
 	public static void setImgType(String[] imgType) {
 		FileUpLoad.imgType = imgType;
 	}
-*/
+	 */
 }

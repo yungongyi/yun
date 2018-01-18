@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.tuyuan.commonweal.pojo.Person;
 import cn.tuyuan.commonweal.service.PersonService;
 import cn.tuyuan.commonweal.util.Constants;
+import cn.tuyuan.commonweal.util.HttpSessionManager;
 import cn.tuyuan.commonweal.util.sendphone.sendsms;
 @RestController("loginController")
 @RequestMapping("/login")
@@ -34,15 +35,12 @@ public class LoginController {
 	public Map<String,String> doLogin(@RequestParam("iphone")String phone,
 			@RequestParam("password")String userPassword,
 			HttpSession  session, HttpServletRequest request){
-		System.out.println("用户输入参数");
-		System.out.println("手机号"+phone);
-		System.out.println("登录"+userPassword);
 		Map<String,String>  m=new HashMap<String,String>();
 		try {
 			Person p = personService.getPerson(phone, userPassword);	
 			if(p!=null){
-				session.setAttribute("id", p.getPersonid());
-				session.setAttribute("SESSION_USERNAME", p.getIphone());
+				HttpSessionManager.setCurrentUserId(p.getPersonid());
+				HttpSessionManager.setCurrentIphone(p.getIphone());
 				m.put("id", p.getPersonid().toString());
 				m.put("Iphone", p.getIphone());		
 			}else{
@@ -59,25 +57,26 @@ public class LoginController {
 
 	//获取验证码的方法 
 	@GetMapping("/getiphone/{iphone}")
-	public int getiphone(@PathVariable String iphone,HttpSession session){
+	public int getiphone(@PathVariable String iphone){
 		int yanzhengma= sendsms.getiphone(iphone);
-		session.setAttribute("yanzhengma",yanzhengma);
+		System.out.println("yanzhengma"+yanzhengma);
+		HttpSessionManager.setTempCode(yanzhengma);
 		return yanzhengma;
 	}
 
 	//快速登录
 	@PostMapping("/fastLogin.html")
-	public Map fastLogin(@RequestParam("fphone")String fphone,@RequestParam("fyanzhengma")String fyanzhengma, HttpSession session,HttpServletRequest request){
+	public Map fastLogin(String fphone,String fyanzhengma,HttpServletRequest request){
 		//获取手机发送的验证码  
-		int  personyanzhengma  = (int) session.getAttribute("yanzhengma");
+		int  personyanzhengma  =HttpSessionManager.getTempCode();
 		Person p = personService.fastLogin(fphone);
 		Map m=new HashMap();
 		int Fyanzhengma=Integer.parseInt(fyanzhengma);
 		if(p!=null){
 			if(Fyanzhengma==personyanzhengma){
 				//如果账号密码正确
-				session.setAttribute("id", p.getPersonid());
-				session.setAttribute("SESSION_USERNAME", p.getIphone());
+				HttpSessionManager.setCurrentUserId(p.getPersonid());
+				HttpSessionManager.setCurrentIphone(p.getIphone());
 				m.put("id", p.getPersonid());
 				m.put("Iphone", p.getIphone());		
 			}else{
@@ -99,16 +98,15 @@ public class LoginController {
 		return exists;
 	} 
 	//用户注册
-	@PostMapping("/register.html")
+	@GetMapping("/register.html")
 	public Map savePerson(
 			@RequestParam("name")String name ,
-			@RequestParam("phone")String iphone,
+			@RequestParam("iphone")String iphone,
 			@RequestParam("password")String password  , 
 			@RequestParam("yanzhengma")String yanzhengma,
-			HttpSession session,
 			HttpServletRequest request) { 
 		Map<String,Object> map=new HashMap<String,Object>();
-		String  registeryanzhengma  =  session.getAttribute("yanzhengma").toString();
+		String  registeryanzhengma  = HttpSessionManager.getTempCode().toString();
 		if(yanzhengma.equals(registeryanzhengma)){
 			Timestamp d = new Timestamp(System.currentTimeMillis()); 
 			Person person = new Person();

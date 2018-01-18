@@ -35,14 +35,14 @@ public class OperationImpl extends HibernateDaoSupport implements OperationDao{
 	public List<Operation> getOperation() {
 
 		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		List<Operation> operations= session.createQuery("from Operation").list();
+		List<Operation> operations= session.createQuery("from Operation order by operationDate desc").list();
 		return operations;
 	}
 
 	//根据用户名称查询用户操作记录
 	public List<Operation> getOperationByPersonName(String PersonName) {
 		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
-		Query query=session.createQuery("from Operation where personId in( select personid from Person where name like ?)");
+		Query query=session.createQuery("from Operation where personId in( select personid from Person where name like ? order by operationDate desc)");
 		query.setString(0,"%"+PersonName+"%"); 
 		List<Operation> lists = query.list();
 		System.out.println(lists.size());

@@ -12,7 +12,19 @@ import cn.tuyuan.commonweal.pojo.Region;
  *  
  */
 public interface NoticeDao { 
-
+	/**
+	 * @param notice
+	 * @return
+	 * 保存一条启示信息
+	 */
+	public int saveNotice(Notice notice);
+	/**
+	 * @param NoticeId
+	 * @return
+	 * 根据启示id查询启示信息
+	 */
+	public Notice getNoticeByid(Integer NoticeId);
+	
 	public List<Notice> getNotice();
 
 	/**
@@ -60,6 +72,6 @@ public interface NoticeDao {
 	List<Notice> searchAllOfNotice(String Content);
 	//多条件查询
 	public List<Notice>  getNoticeByQ(Integer regionId, String describe, Integer noticeType,Integer noticeState);
-	
+	public int updateNoticeByPersonIdAndNoticeId(Notice notice);
 
 }

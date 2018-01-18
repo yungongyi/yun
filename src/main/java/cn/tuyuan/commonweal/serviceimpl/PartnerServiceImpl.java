@@ -30,7 +30,6 @@ public class PartnerServiceImpl implements PartnerService{
 	public List<Partner> getPartner() {
 		System.out.println("请问");
 		List<Partner> p= partnerDao.getPartner();
-		System.out.println(p.get(0).getPartnerName());
 		return p;
 	}
 	/**
@@ -46,8 +45,8 @@ public class PartnerServiceImpl implements PartnerService{
 	 * 添加合作对象
 	 */
 	@Override
-	public void addPartner(Partner p) {
-		partnerDao.addPartner(p);	
+	public int addPartner(Partner p) {
+	 return partnerDao.addPartner(p);	
 	}
 	/**
 	 * 删除合作对象

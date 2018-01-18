@@ -24,7 +24,11 @@ public class NoticeServiceImpl implements NoticeService {
 		List<Notice> notices = noticeDao.getNoticeByPersonId(id);
 		return notices;
 	}
-
+	//新增一条启事信息
+	public int saveNotice(Notice notice) {
+		int saveNotice = noticeDao.saveNotice(notice);
+		return saveNotice;
+	}
 	// 根据用户id 启示id删除启示信息
 	public boolean deleteNoticeByPersonIdAndNoticeId(Integer personId,
 			Integer noticeId) {
@@ -84,6 +88,13 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<Notice> searchAllOfNotice(String content) { 
 		return noticeDao.searchAllOfNotice(content);
 	}
-	
 
+	//根据启示id修改启事状态
+	public int updateStateBynoticeId(Notice notice) {
+		return noticeDao.updateNoticeByPersonIdAndNoticeId(notice);
+	} 
+	//根据启示id查询启示信息
+	public Notice getNoticeByid(Integer NoticeId) {
+		return noticeDao.getNoticeByid(NoticeId);
+	}
 }

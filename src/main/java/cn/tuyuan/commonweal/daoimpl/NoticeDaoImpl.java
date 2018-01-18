@@ -43,8 +43,10 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 
 	// 根据用户id查询启示列表
 	public List<Notice> getNoticeByPersonId(Integer id) {
-		List<Notice> notices = (List<Notice>) this.getHibernateTemplate()
-				.getSessionFactory().getCurrentSession().get(Notice.class, id);
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Notice where personId = :personId order by noticeCreateDate DESC");
+		query.setInteger("personId", id);
+		List<Notice> notices = query.list();
 		return notices;
 	}
 
@@ -77,9 +79,7 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 		if (stateId != null && stateId != 0) {
 			return (List<Notice>) this.getHibernateTemplate().find(hql);
 		} else if (date != null && !date.equals("")) {
-
 			return (List<Notice>) this.getHibernateTemplate().find(hql2);
-
 		} else if (stateId != null && stateId != 0 && date != null) {
 			return (List<Notice>) this.getHibernateTemplate().find(hql3);
 		}
@@ -114,10 +114,11 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 	 */
 	@Override
 	public List<Notice> getNoticeById(Integer id) {
-		String hql = "from Notice as n where n.noticeId=?";
-		List<Notice> n = (List<Notice>) this.getHibernateTemplate().find(hql,
-				id);
-		return n;
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Notice where personId = :personId order by noticeCreateDate DESC");
+		query.setInteger("personId", id);
+		List<Notice> notices = query.list();
+		return notices;
 	}
 
 	//无条件查询所有启事
@@ -143,6 +144,12 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 		query.setProperties(n);
 		List<Notice> notices = query.list();
 		return notices;
+	}
+	//保存一条启事信息
+	public int saveNotice(Notice notice) {
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		int count = (int) session.save(notice);
+		return count;
 	}
 
 	@Override
@@ -181,5 +188,20 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 		List<Notice> notices = query.list(); 
 		return notices;
 	}
-	
+	//修改启事状态
+	public int updateNoticeByPersonIdAndNoticeId(Notice notice) { 
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		String hql = "update Notice set state =:state where noticeId =:noticeId";
+		Query query = session.createQuery(hql);
+		query.setEntity("state", notice.getState() );
+		query.setInteger("noticeId",notice.getNoticeId());
+		int count = query.executeUpdate();
+		return count;
+	}
+	//根据启示id查询启示信息
+	public Notice getNoticeByid(Integer NoticeId) {
+		//根据id
+		Notice notice = (Notice) this.getHibernateTemplate().getSessionFactory().getCurrentSession().get(Notice.class,NoticeId);
+		return notice;
+	}
 }

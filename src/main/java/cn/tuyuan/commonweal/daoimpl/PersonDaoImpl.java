@@ -34,13 +34,13 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 			String hql ="from Person where iphone = ? ";
 			if( this.getHibernateTemplate().find(hql, iphone).isEmpty()){
 				System.out.println("psersons:"+persons);
-		      return null;
+				return null;
 			}
 			persons = (Person) this.getHibernateTemplate().find(hql, iphone).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return persons;
 	}
 
@@ -55,7 +55,7 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 		return empty;
 	}
 
-// 根据用户id查询单个用户 （景子铭）
+	// 根据用户id查询单个用户 （景子铭）
 	@Override
 	public String getPerson(Integer personId) {
 		String hql = "from Person where personid = ?";
@@ -72,21 +72,22 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 				hql, personId);
 		return list.get(0);
 	}
-	
+
 
 	//修改用户密码
 	public boolean updatePersonPassword(Integer personId,String password) {
+
 		try {
 			Session session =this.getHibernateTemplate().getSessionFactory().getCurrentSession();
 			//先查询
 			Person p = (Person) session.load(Person.class,personId);
-			//再修改
-			p.setPassword(password);
-			session.update(p);
+			Query query = session.createQuery("update Person  SET password = :password where personid = :personId");
+			query.setInteger("personId", personId);
+			query.setString("password",password);
+			query.executeUpdate();
 		} catch (Exception e) {
 			return false;
 		}
-		
 		return true;
 	}
 
@@ -102,21 +103,28 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 			if(person.getSex()!=null){
 				p.setSex(person.getSex());
 			}
-		/*	if(person.getAreaId()!=null){
-				p.setAreaId(person.getAreaId());
-			}*/
 			if(person.getIphone()!=null){
 				p.setIphone(person.getIphone());
 			}
-			session.update(p);
+			if(person.getRegion()!=null){
+				p.setRegion(person.getRegion());
+			}
+			if(person.getResource()!=null){
+				p.setResource(person.getResource());
+			}
+			Query query=session.createQuery("update Person SET name=:name, sex=:sex, iphone=:iphone,region=:region,resource=:resource where personid=:personid");
+			query.setProperties(p);
+
+			int count = query.executeUpdate();
+			if(count>0){
+				return true;
+			}else{
+				return false;
+			}
 		} catch (Exception e) {
 			return false;
-		}
-		
-		//再修改 
 
-		
-		return  true ;
+		}
 	}
 
 	/**
@@ -170,7 +178,7 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-	
+
 	}
 
 

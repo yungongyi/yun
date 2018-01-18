@@ -2,6 +2,8 @@ package cn.tuyuan.commonweal.serviceimpl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -44,18 +46,9 @@ public class IdeaServiceImpl implements IdeaService {
 		return ideaDao.delIdea(ideaId);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRED,isolation=Isolation.READ_COMMITTED)    
-	public boolean insertIdea(Idea idea){
-		boolean flag=false;
-		 try {
-			ideaDao.addIdea(idea);
-			flag=true;
-		} catch (Exception e) {
-			e.printStackTrace( );
-		 	// TODO: handle exception
-		} 
-		return flag;
-		 
+	@Override
+	public int saveIdea(String content, String eamil, HttpSession se) {
+		return ideaDao.saveIdea(content, eamil, se);
 	}
 
 }

@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import cn.tuyuan.commonweal.pojo.Partner;
 import cn.tuyuan.commonweal.pojo.Resource;
 import cn.tuyuan.commonweal.pojo.State;
+import cn.tuyuan.commonweal.pojo.Type;
 import cn.tuyuan.commonweal.service.PartnerService;
+import cn.tuyuan.commonweal.service.ResourceService;
 import cn.tuyuan.commonweal.util.FileUpLoad;
 
 /**
@@ -31,6 +33,8 @@ public class PartnerController {
 
 	@javax.annotation.Resource
 	private PartnerService partnerService;
+	@javax.annotation.Resource
+	private ResourceService resourceService;
 	/**
 	 * 查询所有
 	 */
@@ -69,34 +73,52 @@ public class PartnerController {
 	 * 添加合作对象
 	 */
 	@RequestMapping(value = "/addPartner", method = RequestMethod.POST)
-	public void addPartner(
+	public int addPartner(
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "date", required = false) String date,
-			@RequestParam("file0") MultipartFile file,
+			@RequestParam(value = "file0", required = false) MultipartFile partnerimg,
 			@RequestParam(value = "state", required = false) String state,
 			@RequestParam(value = "mark", required = false) String mark) {
-		try {
-			Map<String, Object> fileMap = FileUpLoad.fileUpLoad(file, 1);
-			String imgname = (String) fileMap.get("newName");
-			Partner p = new Partner();
-			p.setPartnerName(name); // 1
-			p.setPartnerStartDate(new Date()); // 2
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date a = sdf.parse(date);
-			System.err.println(a);
-			p.setPartnerEndDate(a); // 3
-			p.setPartnerMark(mark);
+		//先上传文件 （成功往下继续执行  失败  返回 弹出错误信息）
+		//其次把该文件信息插入资源表（如果上传成功）
+		//最后保存合作信息（如果插入资源表成功）
+		int count =0;
+		Map<String, Object> upload = FileUpLoad.fileUpLoad(partnerimg, 1);
+		System.out.println(upload.get("error"));
+		if(upload.get("error").equals("上传成功")){
 			Resource r = new Resource();
-			r.setResourcePath(imgname);			
-			p.setResource(r); // 4
+			System.out.println(upload.get("newName"));
+			r.setResourcePath(upload.get("newName").toString());
+			Type t =new Type();
+			t.setTypeId(12);
+			r.setType(t);
 			State s = new State();
-			System.out.println(state);
-			s.setStateId(Integer.parseInt(state)); // 6
-			p.setState(s);
-			partnerService.addPartner(p);	
-		} catch (ParseException e) {
-			e.printStackTrace();
+			s.setStateId(23);
+			r.setState(s); 
+			boolean save = resourceService.save(r);
+			System.out.println("是否保存资源？"+save);
+			//如果资源保存成功就添加一条合作信息
+			if(save){
+				Partner p = new Partner();
+				State s2 = new State();
+				s2.setStateId(Integer.parseInt(state));
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			  System.out.println(date);
+				p.setPartnerMark(mark);
+				p.setState(s2);
+				p.setPartnerStartDate(new Date());
+				p.setPartnerName(name);
+				p.setResource(r);
+				try { 
+					Date dates = format.parse(date); 
+					 p.setPartnerEndDate(dates);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				count = partnerService.addPartner(p);
+			}
 		}
+		return count;
 	}
 	/**
 	 * 删除合作对象
@@ -105,7 +127,6 @@ public class PartnerController {
 	 */
 	@RequestMapping(value = "/delPartner", method = RequestMethod.GET)
 	public void delPartner(@RequestParam(value = "id") Integer id) {
-		System.err.println("d大大说的啊" + id);
 		partnerService.delPartner(id);
 	}
 	/**

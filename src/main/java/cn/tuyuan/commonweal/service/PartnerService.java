@@ -25,7 +25,7 @@ public interface PartnerService {
     /**
      * 添加合作对象
      */
-    void addPartner(Partner p);
+    int addPartner(Partner p);
     
     /**
      * 删除合作对象

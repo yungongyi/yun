@@ -2,6 +2,8 @@ package cn.tuyuan.commonweal.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.tuyuan.commonweal.pojo.Idea;
@@ -42,6 +44,12 @@ public interface IdeaService {
 	 */
 	String delIdea(Integer ideaId);
 	
-	public boolean insertIdea(Idea idea);
+	/**
+	 * @describe 添加一条意见信息
+	 * @param content意见内容
+	 *            email邮箱
+	 */
+
+	int saveIdea(String content, String eamil, HttpSession se);
 
 }

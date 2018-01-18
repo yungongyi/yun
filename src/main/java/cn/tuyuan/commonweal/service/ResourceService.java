@@ -36,4 +36,16 @@ public interface ResourceService {
 	 * 根据Id查询所有
 	 */
 	public List<Resource> getResourceByresourceId(Integer id);
+	
+	/**
+	 * 修改资源
+	 * @return
+	 */
+	public int updateResource(String resourcePath,Integer resourceId);
+	
+
+	/**
+	 * 根据类型查询资源
+	 */
+	List<Resource> getResourceBytypeId(String name);
 }

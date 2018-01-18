@@ -48,4 +48,16 @@ public interface ResourceDao {
 	 * 根据Id查询所有
 	 */
 	public List<Resource> getResourceById(Integer id);
+	
+	/**
+	 * @param resource
+	 * @return
+	 * 修改资源
+	 */
+	public int updateResource(String resourcePath,Integer resourceId);
+	
+	/**
+	 * 根据类型查询资源
+	 */
+	List<Resource> getResourceBytypeId(String name);
 }

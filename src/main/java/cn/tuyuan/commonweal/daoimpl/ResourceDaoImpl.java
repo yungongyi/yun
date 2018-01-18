@@ -27,18 +27,17 @@ public class ResourceDaoImpl extends HibernateDaoSupport implements ResourceDao 
 			@Qualifier("sessionFactory") SessionFactory sessionFactory) {
 		this.setSessionFactory(sessionFactory);
 	}
-
+	
 	@Override
 	public int saveResource(Resource resource) {
-		int res = (int) this.getHibernateTemplate().save(resource);
+		int res = (int) this.getHibernateTemplate().getSessionFactory().getCurrentSession().save(resource);
 		return res;
 	}
-
 	@Override
 	public Resource getResourceById(int id) {
 		System.out.println("dao" + id);
 		return (Resource) this.getHibernateTemplate().find(
-				"from Resource r where r.resourceId =" + id);
+		"from Resource r where r.resourceId =" + id);
 	}
 
 
@@ -82,4 +81,24 @@ public class ResourceDaoImpl extends HibernateDaoSupport implements ResourceDao 
 		return (List<Resource>) this.getHibernateTemplate().find("from Resource r where r.resourceId=?", id);
 	}
 
+	/* 
+	 *  修改资源
+	 */
+	public int updateResource(String resourcePath,Integer resourceId) {
+		 
+			Query query = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("update Resource set resourcePath =:resourcePath where resourceId =:resourceId");
+			query.setString("resourcePath",resourcePath);
+			query.setInteger("resourceId", resourceId);
+		    int count = query.executeUpdate();
+		    return count;
+	}
+	
+	/**
+	 * 根据类型查询资源
+	 */
+	@Override
+	public List<Resource> getResourceBytypeId(String name) {
+		
+		return (List<Resource>) this.getHibernateTemplate().find("from Resource  where resourcePath like ?","%"+name );
+	}
 }

@@ -1,6 +1,10 @@
 package cn.tuyuan.commonweal.daoimpl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
@@ -15,6 +19,7 @@ import cn.tuyuan.commonweal.dao.IdeaDao;
 import cn.tuyuan.commonweal.pojo.Idea;
 import cn.tuyuan.commonweal.pojo.Message;
 import cn.tuyuan.commonweal.pojo.State;
+import cn.tuyuan.commonweal.util.HttpSessionManager;
 
 @Repository("ideaDao")
 public class IdeaDaoImpl extends HibernateDaoSupport implements IdeaDao {
@@ -109,9 +114,26 @@ public class IdeaDaoImpl extends HibernateDaoSupport implements IdeaDao {
 		return "false";
 	}
 
-	@Override
-	public void addIdea(Idea idea) {
-		this.getHibernateTemplate().save(idea);
+	/**
+	 * @describe 添加一条意见信息
+	 * @param content意见内容
+	 *            email邮箱
+	 */
 
+	@Override
+	public int saveIdea(String content, String eamil, HttpSession se) {
+		Session session = this.getHibernateTemplate().getSessionFactory()
+				.getCurrentSession();
+		Idea idea = new Idea();
+		idea.setIdeaContent(content);
+		System.out.println(HttpSessionManager.getCurrentUserId());
+		idea.setPersonId(HttpSessionManager.getCurrentUserId());
+		idea.setPersonEmail(eamil);
+		idea.setIdeaCreateDate(new Timestamp((new Date()).getTime()));
+		State state = new State();
+		state.setStateId(4);
+		idea.setState(state);
+		int count = (int) session.save(idea);
+		return count;
 	}
 }

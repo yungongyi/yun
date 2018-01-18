@@ -34,7 +34,6 @@ public class OperationController {
 	public List<Operation> getOperationbypersonName(@PathVariable String personname){
 		//获取全部操作记录信息
 		List<Operation> operations = OperationService.getOperationByPersonName(personname);
-	 
 		return operations;
 	}
 }

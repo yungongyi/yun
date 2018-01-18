@@ -28,21 +28,11 @@ import javax.persistence.Table;
 @Table(name = "resource", catalog = "commonweal")
 public class Resource implements java.io.Serializable {
 
+	private static final long serialVersionUID = -2060546509363000437L;
 	private Integer resourceId;
 	private String resourcePath;
 	private Type type;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="typeId")
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-
+	private State state;
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "resourceId", unique = true, nullable = false)
@@ -62,5 +52,25 @@ public class Resource implements java.io.Serializable {
 	public void setResourcePath(String resourcePath) {
 		this.resourcePath = resourcePath;
 	}	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="typeId")
+	public Type getType() {
+		return type;
+	}
 
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="typeState")
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	
 }

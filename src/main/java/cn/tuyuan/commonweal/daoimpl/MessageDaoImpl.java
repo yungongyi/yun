@@ -46,10 +46,7 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	 */
 
 	public List<Message> getAllMessageByPersonId(Integer personId) {
-		List<Message> messages = (List<Message>) this.getHibernateTemplate()
-				.getSessionFactory().getCurrentSession()
-				.get(Message.class, personId);
-		return messages;
+		return (List<Message>) this.getHibernateTemplate().find("from Message m where m.personId=?", personId);
 	}
 
 	@Override

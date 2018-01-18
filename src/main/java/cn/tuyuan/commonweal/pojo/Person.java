@@ -42,8 +42,9 @@ public class Person implements java.io.Serializable {
 	private Date personCreateDate;
 	private Integer sex;
 	private Region region;
+
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER,optional = true)
 	@JoinColumn(name="regionId")
 	public Region getRegion() {
 		return region;
@@ -97,7 +98,7 @@ public class Person implements java.io.Serializable {
 		this.type = type;
 	}
 
-	@ManyToOne(optional=false)
+	@ManyToOne(fetch=FetchType.EAGER,optional = true)
 	@JoinColumn(name = "resourceId")
 	public Resource getResource() {
 		return this.resource;
